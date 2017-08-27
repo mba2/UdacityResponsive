@@ -2,9 +2,22 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+    max-width: 650px;
+    margin: 0 auto;
 }
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
 .kitty {
+    cursor: pointer;
+    width: 45vw;
+    margin-left: 5vw;
+}
+
+.kitty__name {
     cursor: pointer;
     display: inline-block;
 }

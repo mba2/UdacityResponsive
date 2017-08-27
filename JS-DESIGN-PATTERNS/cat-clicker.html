@@ -7,14 +7,31 @@
     </head>
 
     <body>
-        <picture id="js_kitty" class="kitty">
-            <source srcset="./img/kitty.jpg" media="(min-width=500px)">
-            <img src="./img/kitty.jpg" alt="Kitty">
-        </picture> 
+        <div id="kitty--1" class="kitty">
+            <p id="js_kitty__name--1" class="kitty__name"></p>
 
-        <div class="click-counter">
-            <p>Number or clicks: <span id="js_counter" class="click-counter__counter">0</span></p>
+            <picture id="js_kitty__img--1" class="kitty__img js_kitty__img">
+                <source srcset="./img/kitty.jpg" media="(min-width=500px)">
+                <img src="./img/kitty.jpg" alt="Kitty">
+            </picture> 
+                
+            <div class="click-counter click-counter--1">
+                <p>Number or clicks: <span id="js_kitty__counter--1" class="kitty__counter js_kitty__counter">0</span></p>
+            </div>
         </div>
+        
+        <div id="kitty--2" class="kitty">
+            <p id="js_kitty__name--1" class="kitty__name"></p>
+            <picture id="js_kitty__img--2" class="kitty__img js_kitty__img">
+                <source srcset="./img/kitty_2.jpg" media="(min-width:500px)">
+                    <img src="./img/kitty_2.jpg" alt="Kitty 2">
+                </picture>
+            <div class="click-counter click-counter--2">
+                <p>Number or clicks: <span id="js_kitty__counter--2" class="kitty__counter js_kitty__counter">0</span></p>
+            </div>
+        </div>
+
+
         <script src="./js/cat-clicker.js"></script>
     </body>
 </html>
