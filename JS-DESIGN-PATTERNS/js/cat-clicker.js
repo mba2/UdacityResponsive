@@ -1,32 +1,60 @@
-function CatClicker(id) {
-    var clickCounter = 0;
-    var name = ""; 
-    var DOMContainer = document.querySelector("#"+id);
+function Cat(catName,catPicture) {
+    this.name = catName || "kitty";
+    this.sourceImg = catPicture || "./img/kitty.jpg";
+    this.counter = 0;
+};
 
-    setName = function(catName) {
-        name = catName;
-    }
+Cat.prototype = {
+    domContainer : function() {
+            var div = document.createElement("div");
+                div.classList.add("kitty");
+                div.setAttribute("id",this.name);
+            return div;
+    },
+    domPicture : function() {
+        var picture =  document.createElement("picture");
+        var img = document.createElement("img");
+            
+        img.setAttribute("src", this.sourceImg);
+        picture.appendChild(img);
 
-    setClickBehavior = function() {
-        console.log("Setting cat's click beahvior");
-        var _this = this;
-        var counterDisplay = document.querySelector("#js_counter");
-        var catImage = document.querySelector("#js_kitty");
-            catImage.addEventListener("click", function() {
-                _this.clickCounter++;
-                counterDisplay.innerHTML = _this.clickCounter;
-            }, false);
-    };
+        return picture;
+    }, 
+    domCounter : function() {
+        var wrapper =  document.createElement("div");
+        var counter =  document.createElement("p");
+            counter.classList.add("kitty__counter");
+            counter.textContent = this.counter;
+            wrapper.appendChild(counter);
+        return wrapper;
+    },
+    domName : function() {
+        var p = document.createElement("p");
+            p.setAttribute("class","kitty__name");
+            p.textContent = this.name;
+        return p;
+    },
 
+    clickBehavior : function() {
+
+    },
+    mount : function() {
+        var ct = this.domContainer();
+            ct.appendChild(this.domName());
+            ct.appendChild(this.domPicture());
+            ct.appendChild(this.domCounter());
+
+        document.querySelector("body").appendChild(ct);
+    },
 };
 
 window.onload = function() {
     console.log("Starting 'Cat Clicker' project...");
-    var kitty_1 = new CatClicker("kitty--1");
-        // kitty_1.setName("Kitty One");
-        console.log(kitty_1);
+ 
+    var cat1 =  new Cat("Kitty 1");
+        cat1.mount();
         
-        // var kitty_2 = new CatClicker("kitty--2");
-        // kitty_2.setName("Kitty Two");
-        // console.log(kitty_2);
-};
+    var cat2 =  new Cat("Kitty 2","./img/kitty_2.jpg");
+        cat2.mount();
+    
+};  
