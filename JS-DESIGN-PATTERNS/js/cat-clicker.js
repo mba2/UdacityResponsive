@@ -1,15 +1,15 @@
 function Cat(catName,catPicture) {
-    this.name = catName || "kitty";
+    this.name = (catName || "kitty").replace(/\s/gmi,"_");
     this.sourceImg = catPicture || "./img/kitty.jpg";
     this.counter = 0;
 };
 
 Cat.prototype = {
     domContainer : function() {
-            var div = document.createElement("div");
-                div.classList.add("kitty");
-                div.setAttribute("id",this.name);
-            return div;
+        var div = document.createElement("div");
+            div.classList.add("kitty");
+            div.setAttribute("id",this.name);
+        return div;
     },
     domPicture : function() {
         var picture =  document.createElement("picture");
@@ -35,26 +35,30 @@ Cat.prototype = {
         return p;
     },
 
-    clickBehavior : function() {
-
+    clickBehavior : function(clickTarget,mainElement) {
+        var _this = this;
+        clickTarget.addEventListener("click", function(e) {
+            document.querySelector("#"+ _this.name + " .kitty__counter").textContent = _this.counter++;
+        }, false);
+        return clickTarget;
     },
-    mount : function() {
-        var ct = this.domContainer();
-            ct.appendChild(this.domName());
-            ct.appendChild(this.domPicture());
-            ct.appendChild(this.domCounter());
 
-        document.querySelector("body").appendChild(ct);
+    mountDOM : function() {
+        var cat = this.domContainer();
+            cat.appendChild(this.domName());
+            cat.appendChild( this.clickBehavior( this.domPicture()), cat );           
+            cat.appendChild( this.domCounter() );
+        document.querySelector("body").appendChild(cat);
     },
 };
 
 window.onload = function() {
     console.log("Starting 'Cat Clicker' project...");
  
-    var cat1 =  new Cat("Kitty 1");
-        cat1.mount();
+    var cat1 =  new Cat("");
+        cat1.mountDOM();
         
     var cat2 =  new Cat("Kitty 2","./img/kitty_2.jpg");
-        cat2.mount();
+        cat2.mountDOM();
     
 };  
