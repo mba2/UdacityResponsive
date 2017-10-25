@@ -38,7 +38,7 @@ Cat.prototype = {
     clickBehavior : function(clickTarget,mainElement) {
         var _this = this;
         clickTarget.addEventListener("click", function(e) {
-            document.querySelector("#"+ _this.name + " .kitty__counter").textContent = _this.counter++;
+            document.querySelector("#"+ _this.name + " .kitty__counter").textContent = ++_this.counter;
         }, false);
         return clickTarget;
     },
